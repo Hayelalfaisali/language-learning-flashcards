@@ -1,5 +1,5 @@
 
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -58,37 +58,37 @@ const FlashcardStudy = ({ deck, onUpdateDeck }: FlashcardStudyProps) => {
     if (!studyCards.length || currentIndex >= studyCards.length) {
       return;
     }
-    
+
     const now = new Date();
     const currentCard = studyCards[currentIndex];
-    const updatedCard = { 
+    const updatedCard = {
       ...currentCard,
       lastReviewed: now.toISOString(),
       level: correct ? Math.min(currentCard.level + 1, 5) : Math.max(currentCard.level - 1, 0),
     };
-    
+
     // Calculate next review time based on spaced repetition algorithm
     // Level 0: 1 hour, Level 1: 1 day, Level 2: 3 days, Level 3: 1 week, Level 4: 2 weeks, Level 5: 1 month
     const intervals = [1, 24, 72, 168, 336, 720]; // hours
     const nextReviewDate = new Date(now);
     nextReviewDate.setHours(nextReviewDate.getHours() + intervals[updatedCard.level]);
     updatedCard.nextReview = nextReviewDate.toISOString();
-    
+
     // Update study session cards
     const updatedStudyCards = [...studyCards];
     updatedStudyCards[currentIndex] = updatedCard;
     setStudyCards(updatedStudyCards);
-    
+
     // Update deck with new card data
-    const updatedCards = deck.cards.map(card => 
+    const updatedCards = deck.cards.map(card =>
       card.id === currentCard.id ? updatedCard : card
     );
-    
+
     onUpdateDeck({
       ...deck,
       cards: updatedCards
     });
-    
+
     handleNext();
   };
 
@@ -143,10 +143,9 @@ const FlashcardStudy = ({ deck, onUpdateDeck }: FlashcardStudyProps) => {
 
       <Progress value={progress} className="mb-4" />
 
-      <Card 
-        className={`relative h-64 cursor-pointer transition-all duration-500 mx-auto ${
-          isFlipped ? "bg-muted" : ""
-        }`}
+      <Card
+        className={`relative h-64 cursor-pointer transition-all duration-500 mx-auto ${isFlipped ? "bg-muted" : ""
+          }`}
         onClick={handleFlip}
       >
         <div className="absolute inset-0 flex items-center justify-center p-6">
@@ -170,14 +169,14 @@ const FlashcardStudy = ({ deck, onUpdateDeck }: FlashcardStudyProps) => {
 
         {isFlipped ? (
           <div className="flex space-x-2">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={() => updateCardProgress(false)}
               className="border-red-500 hover:bg-red-100"
             >
               <X className="mr-2 h-4 w-4 text-red-500" /> Again
             </Button>
-            <Button 
+            <Button
               variant="outline"
               onClick={() => updateCardProgress(true)}
               className="border-green-500 hover:bg-green-100"
