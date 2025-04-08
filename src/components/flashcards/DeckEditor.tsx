@@ -1,6 +1,6 @@
 
-import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import  { useState } from "react";
+import{ v4 as uuidv4 } from "uuid";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,7 +9,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Plus, Trash } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Card } from "@/types/flashcard";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 
 interface DeckEditorProps {
   deck?: {
