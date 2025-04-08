@@ -118,7 +118,6 @@ const FlashcardStudy = ({ deck, onUpdateDeck }: FlashcardStudyProps) => {
       </div>
     );
   }
-
   // Guard clause to prevent accessing undefined cards
   if (!studyCards || studyCards.length === 0 || currentIndex >= studyCards.length) {
     return (
@@ -128,7 +127,6 @@ const FlashcardStudy = ({ deck, onUpdateDeck }: FlashcardStudyProps) => {
       </div>
     );
   }
-
   const currentCard = studyCards[currentIndex];
   const progress = ((currentIndex) / studyCards.length) * 100;
 
